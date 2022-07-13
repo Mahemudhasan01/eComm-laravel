@@ -18,12 +18,12 @@ class User_seeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        for ($i = 1; $i <= 10; $i++) {
+        // for ($i = 1; $i <= 1; $i++) {
             DB::table('users')->insert([
-                'name' => $faker->name,
-                'email' => $faker->email,
-                'password' => md5($faker->password)
+                'name' => 'Mahemudhasan',
+                'email' => 'admin@gmail.com',
+                'password' => Hash::make('admin')
             ]);
-        }
+        // }
     }
 }
