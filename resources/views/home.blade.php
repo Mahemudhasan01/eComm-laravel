@@ -1,3 +1,8 @@
+@extends('layout.main')
+
+@section('main-section')
+    
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -13,3 +18,4 @@
    <h1>Hello</h1>   
   </body>
 </html>
+@endsection

@@ -15,9 +15,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('login');
 });
 Route::post('/login', [UserController::class, 'login'])->name('login');
 
-Route::get('/home', [ProductController::class, 'index'])->name('product');
+Route::get('/home', function(){
+    return view('home');
+})->name('home');
+
+Route::get('/product', [ProductController::class, 'index'])->name('product');
+
+Route::get('/logout', function(){
+    session()->forget('user');
+    return redirect('/login');
+})->name('logout');
+
+// Route::get('/getSession', function(){
+//     $sess = session()->all('user');
+
+//     echo "<pre>";
+//     print_r($sess);
+//     echo "<pre>";
+
+//     // return redirect('/login');
+// });
+
+
