@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,17 +21,25 @@ Route::get('/login', function () {
 });
 Route::post('/login', [UserController::class, 'login'])->name('login');
 
-Route::get('/home', function(){
-    return view('home');
-})->name('home');
-
-Route::get('/product', [ProductController::class, 'index'])->name('product');
-
-Route::get('/logout', function(){
+Route::get('/logout', function () {
     session()->forget('user');
     return redirect('/login');
 })->name('logout');
 
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
+
+//Product Routes
+Route::group(['prefix' => '/product'], function () {
+    Route::get('/', [ProductController::class, 'index'])->name('product');
+    Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('product.detail');
+    Route::get('/search', [ProductController::class, 'search'])->name('product.search');
+    Route::get('/addtocard/{id}', [ProductController::class, 'addToCard'])->name('product.addToCard');
+    Route::get('/cardproduct', [ProductController::class, 'showCartProducts'])->name('product.cart');
+});
+
+// To show Session
 // Route::get('/getSession', function(){
 //     $sess = session()->all('user');
 
@@ -40,5 +49,3 @@ Route::get('/logout', function(){
 
 //     // return redirect('/login');
 // });
-
-
