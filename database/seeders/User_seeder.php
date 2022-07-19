@@ -20,8 +20,8 @@ class User_seeder extends Seeder
         $faker = Faker::create();
         // for ($i = 1; $i <= 1; $i++) {
             DB::table('users')->insert([
-                'name' => 'Mahemudhasan',
-                'email' => 'admin@gmail.com',
+                'name' => 'admin',
+                'email' => 'admin1@gmail.com',
                 'password' => Hash::make('admin')
             ]);
         // }

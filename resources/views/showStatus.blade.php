@@ -5,7 +5,7 @@
     <html lang="en">
 
     <head>
-        <title>Card</title>
+        <title>Orders</title>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,9 +16,9 @@
 
     <body class="bg-dark">
         <div class="container">
-            <h2 class="p-3 mb-2 bg-success text-white text-center">Cart List</h2>
+            <h2 class="p-3 mb-2 bg-success text-white text-center">Order List</h2>
             <div class="col-sm-10">
-                @foreach ($cartItems as $item)
+                @foreach ($myorder as $item)
                     <div class="search-link row">
                         <div class="col-sm-10">
                             <div class="col-sm-7">
@@ -28,8 +28,8 @@
                                     <h2 class="text-white hr"> Name: {{ $item->name }} </h2><hr style="background: aliceblue">
                                     <h4 class="text-white hr"> Price: {{ $item->price }} </h4>
                                     <h6 class="text-white hr"> Description: {{ $item->description }} </h6><hr style="background: orange">
-                                    <a href="{{ route('product.remove.cart', ['id' => $item->product_id]) }}"><button class="btn btn-warning">Remove From Cart</button></a>
-                                    <a href="{{ route('product.order', ['id' => $item->product_id]) }}"><button class="btn btn-success">Buy Now</button></a>
+                                    <a href="{{ route('product.remove.cart', ['id' => $item->product_id]) }}"><button class="btn btn-danger">Cancel Order</button></a>
+                                    <a href="{{ route('product.order') }}"><button class="btn btn-success"> Check Status</button></a>
                                 </a>
                             </div>
                         </div>

@@ -15,20 +15,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/login', function () {
+//Index page
+Route::get('/', function () {
     return view('login');
 });
+//Chech email and password
 Route::post('/login', [UserController::class, 'login'])->name('login');
-
+//Destroy and logout
 Route::get('/logout', function () {
     session()->forget('user');
-    return redirect('/login');
+    return redirect('/');
 })->name('logout');
-
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
 
 //Product Routes
 Route::group(['prefix' => '/product'], function () {
@@ -37,6 +34,14 @@ Route::group(['prefix' => '/product'], function () {
     Route::get('/search', [ProductController::class, 'search'])->name('product.search');
     Route::get('/addtocard/{id}', [ProductController::class, 'addToCard'])->name('product.addToCard');
     Route::get('/cardproduct', [ProductController::class, 'showCartProducts'])->name('product.cart');
+    Route::get('/cardproductremove/{id}', [ProductController::class, 'removeCartProduct'])->name('product.remove.cart');
+    Route::get('/order/{id}', [ProductController::class, 'showOrder'])->name('product.order');
+    Route::post('/buy', [ProductController::class, 'buyItems'])->name('product.buy');
+    Route::get('/singleorder/{id}', [ProductController::class, 'orderSingleItem'])->name('product.single.order');
+    Route::post('/buysingleorder', [ProductController::class, 'buySingleItem'])->name('product.buy.single');
+    Route::get('/myorder', [ProductController::class, 'myOrders'])->name('product.my.order');
+    Route::get('/status/{id}', [ProductController::class, 'showStatus'])->name('product.status');
+    Route::get('/cancel/{id}', [ProductController::class, 'cancelOrder'])->name('product.order.cancel');
 });
 
 // To show Session

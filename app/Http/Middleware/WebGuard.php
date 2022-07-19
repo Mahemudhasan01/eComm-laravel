@@ -17,7 +17,7 @@ class WebGuard
     public function handle(Request $request, Closure $next)
     {
         //If Session has so use can't go again on login
-        if($request->path() == "login" && $request->session()->has('user'))
+        if($request->path() == "/" && $request->session()->has('user'))
         {
            return redirect()->back();
         }

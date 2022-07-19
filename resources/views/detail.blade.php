@@ -32,7 +32,9 @@
                         <button type="submit" class="btn btn-success">Add To Card</button>
                     </a>
                     <br><br>
-                    <button class="btn btn-primary">Buy Now</button>
+                    <a href=" {{ route('product.single.order', ['id' => $product['product_id']]) }} ">
+                        <button class="btn btn-primary">Buy Now</button>
+                    </a>
                 </div>
             </div>
         </div>
